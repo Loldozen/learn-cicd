@@ -5,40 +5,49 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-  print-hello:
+  print-env-variable:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
-          name: "print hello"
-          command: "echo Hello"
-  print-world:
-    docker:
-      - image: cimg/base:stable
-    steps: 
-      - checkout
-      - run:
-          name: "print world again"
-          command: "echo World again" 
+          name: "Print my name"
+          command: "echo ${Name}"
+      
+  # say-hello:
+  #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  #   docker:
+  #     - image: cimg/base:stable
+  #   # Add steps to the job
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: "Say hello"
+  #         command: "echo Hello, World!"
+  # print-hello:
+  #   docker:
+  #     - image: cimg/base:stable
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: "print hello"
+  #         command: "echo Hello"
+  # print-world:
+  #   docker:
+  #     - image: cimg/base:stable
+  #   steps: 
+  #     - checkout
+  #     - run:
+  #         name: "print world again"
+  #         command: "echo World again" 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
-      - print-hello
-      - print-world
+  print-name-workflow:
+    jobs
+      - print-env-variable  
+      # - say-hello
+      # - print-hello
+      # - print-world
