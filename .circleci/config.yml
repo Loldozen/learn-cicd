@@ -57,9 +57,11 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: return 1
-      - run: echo "AN ERROR OCCURED"
-        when: on_fail
+      - run: exit 1
+      - run: 
+          name: "On failure" 
+          command: echo "AN ERROR OCCURED"
+          when: on_fail
 
   # say-hello:
   #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
