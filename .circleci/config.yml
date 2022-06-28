@@ -58,13 +58,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: return 1
-  
-  on_failure:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
       - run: echo "AN ERROR OCCURED"
-    when: on_fail
+        when: on_fail
 
   # say-hello:
   #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -106,7 +101,6 @@ workflows:
           requires: 
             - save_hello_world_output
       - test_failure
-      - on_failure
       
       # - print-env-variable  
       # - say-hello
