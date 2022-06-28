@@ -29,8 +29,11 @@ jobs:
       - run:
           name: Print hello world
           command: echo "Hello World" > output.txt
+      - run:
+          name: "Create workspace directory"
+          command: cd ~/tmp && mkdir workspace
       - persist_to_workspace:
-          root: workspace
+          root: ~/tmp/workspace
           paths:
             - output.txt
   print_output_file:
