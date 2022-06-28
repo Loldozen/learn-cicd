@@ -28,12 +28,12 @@ jobs:
     steps: 
       - run:
           name: Print hello world
-          command: echo "Hello World" > output.txt
+          command: echo "Hello World" > ~/workspace/output.txt
       - run:
           name: "Create workspace directory"
-          command: cd ~/tmp && mkdir workspace
+          command: cd ~/ && mkdir workspace
       - persist_to_workspace:
-          root: ~/tmp/workspace
+          root: ~/workspace
           paths:
             - output.txt
   print_output_file:
@@ -41,10 +41,10 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/workspace
       - run:
           name: "print output file"
-          command:  cat /tmp/workspace/output.txt
+          command:  cat ~/workspace/output.txt
 
   use_commands:
     docker:
