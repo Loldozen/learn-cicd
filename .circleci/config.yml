@@ -27,11 +27,11 @@ jobs:
       - image: cimg/base:stable
     steps: 
       - run:
-          name: Print hello world
-          command: echo "Hello World" > ~/workspace/output.txt
-      - run:
           name: "Create workspace directory"
           command: cd ~/ && mkdir workspace
+      - run:
+          name: Print hello world
+          command: echo "Hello World" > ~/workspace/output.txt
       - persist_to_workspace:
           root: ~/workspace
           paths:
